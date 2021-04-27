@@ -1,0 +1,15 @@
+---
+dist: "xenial"
+language: "python"
+python:
+        - "3.6"
+install:
+        - "pip install pipenv"
+        - "pipenv install"
+
+before_script:
+        - "pipenv run pylint sdwan.py"
+script:
+        - "pipenv run pytest test_sdwan.py -v -s"
+
+...
