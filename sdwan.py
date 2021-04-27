@@ -47,7 +47,7 @@ def sdwanlistdevices(session,inputdata):
     '''
     try:
         response = session.get(f"{inputdata['baseurl']}{inputdata['devicelisturl']}",verify=False)
-    except Exception:
+    except requests.exceptions.InvalidHeader:
         return "<html>"
 
     # Retrieve device list and print certain data for each device
