@@ -1,14 +1,26 @@
 ---
-dist: "xenial"
+# Define a Linux distribution for TRAVIS CI VM
+dist: "xenial" 
+# Define VM with PYTHON language installed
 language: "python"
+# Define PYTHON version to use
 python:
         - "3.6"
+# Execute installation scirpts
+# 1) install PIPENV from PIP (that is pre included)
+# 2) install pipenv environment and libraries
+#    assuming that the working directory contains
+#    source files from Github
 install:
         - "pip install pipenv"
         - "pipenv install"
 
+# Execute linter (pylint) before the tests
 before_script:
         - "pipenv run pylint sdwan.py"
+
+# Execute the main body of the tests with pytest
+# NOTE: in this code we run the code with "pipenv run"
 script:
         - "pipenv run pytest test_sdwan.py -v -s"
 
